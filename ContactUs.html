@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+body
+{
+background-image: url("public/bg2.png");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center; 
+width:100%;
+hight:60%;
+}
+</style>
+
+</head>
+
+<body>
+<div style="padding-left:20%;padding-top:10%;float:left;">
+<h1 style="color:white;font-family:verdana">Contact Us</h1>
+<h4 style="color:white;font-family:verdana" >Sector 28,CDCL Building,Chandigarh</h4>
+<input type="text" placeholder="Name"  id="user_name" style="width:150px;height:25px;">
+<input  type="text" placeholder="Company Name" id="company_name" style="width:220px;height:25px;" >
+<br>
+<br>
+<input type="email" placeholder="Email" id="email" style="width:370px;height:25px;" ><br><br>
+<input type="number" placeholder="Contact" id="contact" style="width:370px;height:25px;">
+<br><br>
+<textarea rows="4" cols="50" id="message" placeholder="Message" ></textarea>
+<br><br>
+<button type="button" style="width:100px;height:40px; margin-left:60px;" onclick=fun1()>Submit</button>
+<button type="button" style="width:100px;height:40px; margin-left:10px;" onclick=fun2()>Submit</button>
+</div>
+
+
+<div id="map" style="width:300px;height:300px;margin-top:150px;float:right;margin-right:20%;"></div>
+
+
+
+</div>
+
+
+<script>
+
+function myMap() 
+{
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {
+    center: new google.maps.LatLng(30.733315,76.779418 ), 
+    zoom: 10
+  }
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+  
+ }
+ function fun1()
+ {
+  var a=document.getElementById('user_name').value;
+  var b=document.getElementById('company_name').value;
+  var c=document.getElementById('email').value;
+  var d=document.getElementById('message').value;
+  var e=document.getElementById('contact').value;
+  var myobj={"uname":a,"cname":b,"email":c,"message":d,"contact":e};
+  var myobj1=JSON.stringify(myobj);
+  localStorage.setItem(document.getElementById('user_name').value,myobj1);
+  alert('Successful');
+ }//fun1() close
+ 
+ function fun2()
+ {
+ var result;
+  for(var i=0;i<localStorage.length;i++)
+  {
+    result=localStorage.key(i);
+	document.write(localStorage.getItem(result));
+	document.write("<br>");
+  }
+ }
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+
+
+
+
+</body>
+</html>
